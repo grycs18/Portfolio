@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabrielle B. Moneva | UI/UX, Graphics & 3D/AR Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #131822;
+      --surface-2: #1a2130;
+      --border: rgba(148, 163, 184, 0.14);
+      --border-hover: rgba(56, 189, 248, 0.55);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.12);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 4.5rem;
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.11), transparent 36%),
+        radial-gradient(circle at 88% 18%, rgba(129, 140, 248, 0.10), transparent 38%);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.25);
+      }
+      50% {
+        box-shadow: 0 0 20px 2px rgba(56, 189, 248, 0.14);
+      }
+    }
+
+    .anim-hero {
+      animation: fadeUp 0.75s var(--ease-out) both;
+    }
+
+    .anim-delay-1 {
+      animation-delay: 0.08s;
+    }
+
+    .anim-delay-2 {
+      animation-delay: 0.16s;
+    }
+
+    /* Header / Hero */
+    header {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.75rem 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.5vw, 2.85rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(90deg, #ffffff 0%, #bae6fd 60%, #c7d2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.95rem;
+      border-radius: 10px;
+      color: #e2e8f0;
+      transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .pill:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-hover);
+      background: var(--surface-2);
+      color: var(--accent);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+    }
+
+    /* Filter Buttons */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      background: var(--surface);
+      padding: 0.35rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .filter-btn {
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      padding: 0.48rem 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #080c14;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+    }
+
+    /* Project Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.75rem;
+    }
+
+    .card {
+      --mx: 50%;
+      --my: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.55s var(--ease-out),
+        transform 0.45s var(--ease-spring),
+        border-color 0.25s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card.visible:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 18px 36px -14px rgba(0, 0, 0, 0.65);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(320px circle at var(--mx) var(--my), rgba(56, 189, 248, 0.11), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card.hidden-filter {
+      display: none;
+    }
+
+    .card-thumb {
+      height: 158px;
+      background: linear-gradient(135deg, #172033 0%, #0d1320 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.1rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.06) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.7s var(--ease-out);
+    }
+
+    .card:hover .card-thumb::after {
+      transform: translateX(100%);
+    }
+
+    .thumb-label {
+      font-size: 0.98rem;
+      font-weight: 650;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .thumb-sub {
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+
+    .status-pill {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: var(--warn-soft);
+      color: var(--warn);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+    }
+
+    .card-body {
+      padding: 1.35rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-category {
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 650;
+      margin-bottom: 0.55rem;
+    }
+
+    .card-desc {
+      font-size: 0.91rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+      flex: 1;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .tag {
+      background: var(--surface-2);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn-action, .btn-link {
+      flex: 1 1 auto;
+      text-align: center;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.22s var(--ease-out);
+    }
+
+    .btn-action {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .btn-action:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-link {
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #080c14;
+      background: var(--accent);
+      font-weight: 700;
+    }
+
+    .btn-link:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.3rem;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s var(--ease-out), transform 0.35s var(--ease-spring), border-color 0.25s ease;
+    }
+
+    .skill-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skill-box.visible:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+    }
+
+    .skill-box h3 {
+      font-size: 0.98rem;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+
+    .skill-box ul {
+      list-style: none;
+      font-size: 0.89rem;
+      color: var(--muted);
+    }
+
+    .skill-box li {
+      margin-bottom: 0.4rem;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+
+    .skill-box li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Animated Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.78);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      max-width: 620px;
+      width: 100%;
+      padding: 1.85rem;
+      transform: scale(0.93) translateY(14px);
+      transition: transform 0.32s var(--ease-spring);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+    }
+
+    .modal-backdrop.open .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .modal p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal ul {
+      margin-left: 1.2rem;
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal li {
+      margin-bottom: 0.45rem;
+    }
+
+    .modal-note {
+      background: var(--warn-soft);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: #fde68a;
+      padding: 0.7rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .modal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: var(--accent);
+      color: #080c14;
+      border: none;
+      padding: 0.58rem 1.15rem;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-spring), filter 0.2s ease;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.03);
+      filter: brightness(1.08);
+    }
+
+    .close-btn.secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="anim-hero">
+    <div class="badge"><span class="dot"></span> Available for 400-Hour OJT Internship</div>
+    <h1>Gabrielle Bayson Moneva</h1>
+    <p class="subtitle anim-hero anim-delay-1">
+      BS Computer Science (Graphics & Visualization) student specializing in UI/UX design, 3D modeling & Unity environments, AR prototypes, and video/visual presentation.
+    </p>
+    <div class="contact-bar anim-hero anim-delay-2">
+      <span class="pill">Liliw, Laguna</span>
+      <a class="pill" href="mailto:gabriellemoneva@gmail.com">gabriellemoneva@gmail.com</a>
+      <a class="pill" href="https://www.figma.com/design/zcE49ygGt9oF7tW9jrfDOY/CAR-RENTAL-UI?node-id=0-1&t=CheK2XLDRDlniN40-1" target="_blank" rel="noopener">Car Rental Figma ↗</a>
+      <a class="pill" href="https://canva.link/hun9jlpxhpmwdij" target="_blank" rel="noopener">Car Rental Canva ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-header">
+      <h2>Selected Projects & Video Demos</h2>
+      <div class="filters" role="tablist" aria-label="Filter projects">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="uiux">UI/UX & Presentation</button>
+        <button class="filter-btn" data-filter="3dar">3D & Unity</button>
+        <button class="filter-btn" data-filter="video">Video Progress & Demos</button>
+      </div>
+    </div>
+
+    <div class="grid" id="projectGrid">
+      <!-- 1. Car Rental Management System -->
+      <article class="card" data-category="uiux">
+        <div class="card-thumb">
+          <div class="thumb-label">Car Rental UI & Presentation</div>
+          <div class="thumb-sub">Figma Design File • Canva Deck</div>
+        </div>
+        <div class="card-body">
+          <div class="card-category">UI/UX Design & Visual Deck</div>
+          <h3 class="card-title">Car Rental Management System</h3>
+          <p class="card-desc">
+            Mobile-first interface wireframes and UI screens designed in Figma, paired with a structured Canva presentation walking through the system concept and workflow.
+          </p>
+          <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Canva</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">Mobile-First</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn-link" href="https://www.figma.com/design/zcE49ygGt9oF7tW9jrfDOY/CAR-RENTAL-UI?node-id=0-1&t=CheK2XLDRDlniN40-1" target="_blank" rel="noopener">Figma UI ↗</a>
+            <a class="btn-link" href="https://canva.link/hun9jlpxhpmwdij" target="_blank" rel="noopener">Canva Deck ↗</a>
+            <button class="btn-action" onclick="openModal('car')">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. 3D Sample Work -->
+      <article class="card" data-category="3dar video">
+        <div class="card-thumb">
+          <div class="thumb-label">3D Sample Work Showcase</div>
+          <div class="thumb-sub">YouTube Video Demo • 3D Modeling & Visuals</div>
+        </div>
+        <div class="card-body">
+          <div class="card-category">3D Modeling & Video Showcase</div>
+          <h3 class="card-title">3D Sample Work</h3>
+          <p class="card-desc">
+            Video compilation highlighting 3D modeling, visual assets, and creative presentation work uploaded to YouTube.
+          </p>
+          <div class="tags">
+            <span class="tag">3D Modeling</span>
+            <span class="tag">Blender / 3D</span>
+            <span class="tag">Video Showcase</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn-link" href="https://youtu.be/2ja3gebCxlQ" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+            <button class="btn-action" onclick="openModal('sample3d')">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Laboratory Unity Mini Scene Development -->
+      <article class="card" data-category="3dar video">
+        <div class="card-thumb">
+          <div class="thumb-label">Laboratory Unity Mini Scene</div>
+          <div class="thumb-sub">YouTube Demo • Unity Environment & Setup</div>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Unity 3D Scene Development</div>
+          <h3 class="card-title">Laboratory Unity Mini Scene Development</h3>
+          <p class="card-desc">
+            Environment and scene development walkthrough inside Unity showcasing spatial layout, objects, and scene composition.
+          </p>
+          <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">3D Scene</span>
+            <span class="tag">Environment</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn-link" href="https://youtu.be/lMXtbMjRWgI" target="_blank" rel="noopener">Watch Scene Demo ↗</a>
+            <button class="btn-action" onclick="openModal('labscene')">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Obstacle Course (Progress 1 & Progress 2) -->
+      <article class="card" data-category="3dar video">
+        <div class="card-thumb">
+          <div class="thumb-label">Obstacle Course Development</div>
+          <div class="thumb-sub">Progress 1 & Progress 2 YouTube Logs</div>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Interactive 3D & Iteration Logs</div>
+          <h3 class="card-title">3D Obstacle Course (Progress 1 & 2)</h3>
+          <p class="card-desc">
+            Iterative development recordings documenting early build stages and gameplay/environment progression across two YouTube milestones.
+          </p>
+          <div class="tags">
+            <span class="tag">Unity 3D</span>
+            <span class="tag">Obstacle Course</span>
+            <span class="tag">Dev Progress</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn-link" href="https://youtu.be/12alsoARXk4" target="_blank" rel="noopener">Progress 1 ↗</a>
+            <a class="btn-link" href="https://youtu.be/b8TU-EIErQo" target="_blank" rel="noopener">Progress 2 ↗</a>
+            <button class="btn-action" onclick="openModal('obstacle')">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Echoes of Forgotten (Unity Personal Project - Not Deployed) -->
+      <article class="card" data-category="3dar">
+        <div class="card-thumb">
+          <div class="thumb-label">Echoes of Forgotten</div>
+          <div class="thumb-sub">Unity Sci-Fi Reactor Puzzle Project</div>
+          <span class="status-pill">Personal Project • Not Deployed (Repo Available)</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Unity 3D Personal Project</div>
+          <h3 class="card-title">Echoes of Forgotten</h3>
+          <p class="card-desc">
+            Personal Unity 3D sci-fi reactor puzzle project featuring interactive controls and puzzle mechanics. Not publicly hosted/deployed; source repository can be shared directly upon request.
+          </p>
+          <div class="tags">
+            <span class="tag">Unity 3D</span>
+            <span class="tag">Sci-Fi Puzzle</span>
+            <span class="tag">Repository Only</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn-action" onclick="openModal('echoes')">Repo & Deployment Note</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-header">
+      <h2>Core Capabilities</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <h3>UI/UX & Visual Presentation</h3>
+        <ul>
+          <li>Interface wireframing & layout design in Figma</li>
+          <li>Presentation & visual decks in Canva</li>
+          <li>Clear user flows & clean visual hierarchy</li>
+        </ul>
+      </div>
+      <div class="skill-box">
+        <h3>3D & Unity Development</h3>
+        <ul>
+          <li>3D asset modeling & scene assembly</li>
+          <li>Unity 3D environments & interactive prototypes</li>
+          <li>Iterative testing & build documentation</li>
+        </ul>
+      </div>
+      <div class="skill-box">
+        <h3>Academic & Technical Fit</h3>
+        <ul>
+          <li>BS Computer Science (Graphics & Visualization)</li>
+          <li>Ready for 400-hour OJT & live walkthroughs</li>
+          <li>Direct contact: gabriellemoneva@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
+    <div class="modal">
+      <h3 id="modalTitle">Project Title</h3>
+      <p id="modalSummary">Project description.</p>
+      <ul id="modalBullets"></ul>
+      <div class="modal-note" id="modalNote" style="display: none;"></div>
+      <div class="modal-links" id="modalLinks"></div>
+      <div style="margin-top: 1.15rem;">
+        <button class="close-btn secondary" onclick="forceCloseModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 70);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.card, .skill-box').forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        let delay = 0;
+        cards.forEach(card => {
+          const cats = card.getAttribute('data-category');
+          const matches = filter === 'all' || cats.includes(filter);
+
+          if (matches) {
+            card.classList.remove('hidden-filter', 'visible');
+            void card.offsetWidth;
+            setTimeout(() => card.classList.add('visible'), delay);
+            delay += 65;
+          } else {
+            card.classList.add('hidden-filter');
+            card.classList.remove('visible');
+          }
+        });
+      });
+    });
+
+    const caseStudies = {
+      car: {
+        title: "Car Rental Management System",
+        summary: "UI/UX screens and presentation materials for a car rental system.",
+        bullets: [
+          "Interactive UI design and screen structure available in Figma.",
+          "Presentation overview and visual slides available via Canva."
+        ],
+        links: [
+          { label: "Open Figma UI ↗", url: "https://www.figma.com/design/zcE49ygGt9oF7tW9jrfDOY/CAR-RENTAL-UI?node-id=0-1&t=CheK2XLDRDlniN40-1" },
+          { label: "Open Canva Presentation ↗", url: "https://canva.link/hun9jlpxhpmwdij" }
+        ]
+      },
+      sample3d: {
+        title: "3D Sample Work",
+        summary: "Video reel showcasing 3D modeling and visual work.",
+        bullets: [
+          "Demonstrates 3D modeling and visual presentation style.",
+          "Hosted on YouTube for quick viewing during applications and interviews."
+        ],
+        links: [
+          { label: "Watch 3D Sample Work ↗", url: "https://youtu.be/2ja3gebCxlQ" }
+        ]
+      },
+      labscene: {
+        title: "Laboratory Unity Mini Scene Development",
+        summary: "Unity mini-scene development walkthrough showing laboratory environment setup.",
+        bullets: [
+          "Shows scene layout, 3D objects, and Unity workspace progress.",
+          "Available as a direct YouTube video link."
+        ],
+        links: [
+          { label: "Watch Unity Mini Scene ↗", url: "https://youtu.be/lMXtbMjRWgI" }
+        ]
+      },
+      obstacle: {
+        title: "3D Obstacle Course (Progress 1 & Progress 2)",
+        summary: "Two-part video progress log showing the development of the 3D obstacle course.",
+        bullets: [
+          "Progress 1 captures early course setup and initial build mechanics.",
+          "Progress 2 shows continued iteration and environment/gameplay progression."
+        ],
+        links: [
+          { label: "Watch Progress 1 ↗", url: "https://youtu.be/12alsoARXk4" },
+          { label: "Watch Progress 2 ↗", url: "https://youtu.be/b8TU-EIErQo" }
+        ]
+      },
+      echoes: {
+        title: "Echoes of Forgotten",
+        summary: "Personal Unity 3D sci-fi reactor puzzle project.",
+        bullets: [
+          "Developed as an independent Unity 3D project.",
+          "Not publicly deployed or hosted on a live web URL."
+        ],
+        note: "Deployment Status: Personal project (not deployed). Repository / project files can be shared directly upon request or walked through live.",
+        links: []
+      }
+    };
+
+    const backdrop = document.getElementById('modalBackdrop');
+
+    function openModal(key) {
+      const data = caseStudies[key];
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalSummary').textContent = data.summary;
+
+      const list = document.getElementById('modalBullets');
+      list.innerHTML = '';
+      data.bullets.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+
+      const noteEl = document.getElementById('modalNote');
+      if (data.note) {
+        noteEl.textContent = data.note;
+        noteEl.style.display = 'block';
+      } else {
+        noteEl.style.display = 'none';
+      }
+
+      const linksEl = document.getElementById('modalLinks');
+      linksEl.innerHTML = '';
+      data.links.forEach(l => {
+        const a = document.createElement('a');
+        a.href = l.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'close-btn';
+        a.textContent = l.label;
+        linksEl.appendChild(a);
+      });
+
+      backdrop.classList.add('open');
+    }
+
+    function closeModal(e) {
+      if (e.target === backdrop) {
+        forceCloseModal();
+      }
+    }
+
+    function forceCloseModal() {
+      backdrop.classList.remove('open');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') forceCloseModal();
+    });
+  </script>
+</body>
+</html>
